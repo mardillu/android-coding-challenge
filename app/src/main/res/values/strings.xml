@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <!-- posts listing -->
+    <string name="load_posts_error_message">Could not load posts. Try again later</string>
+
+    <!-- post details -->
+    <string name="display_post_error_message">Could not display post, please choose another</string>
+</resources>

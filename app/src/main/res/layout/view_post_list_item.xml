@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/defaultPadding">
+
+    <TextView
+        android:id="@+id/postTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        tools:text="A Post Title"
+        />
+
+    <TextView
+        android:id="@+id/bodyPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        app:layout_constraintTop_toBottomOf="@id/postTitle"
+        app:layout_constraintStart_toStartOf="@id/postTitle"
+        android:layout_marginTop="@dimen/paddingSmall"
+        android:ellipsize="end"
+
+        tools:text="A very long description from the body that should wrap more than one line, hopefully even more than three lines"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
