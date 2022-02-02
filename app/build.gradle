@@ -7,11 +7,11 @@ apply plugin: "kotlin-kapt"
 
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
     defaultConfig {
         applicationId "com.syftapp.codetest"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -26,15 +26,15 @@ android {
     }
 }
 
-def androidx_version = '1.1.0-alpha04'
-def room_version = '2.1.0-alpha06'
-def retrofit_version = '2.5.0'
+def androidx_version = '1.3.0-alpha01'
+def room_version = '2.4.1'
+def retrofit_version = '2.8.1'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.1.0-alpha05'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.core:core-ktx:1.8.0-alpha03'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation "androidx.appcompat:appcompat:$androidx_version"
     implementation "androidx.recyclerview:recyclerview:$androidx_version"
     implementation "androidx.room:room-runtime:$room_version"
@@ -43,7 +43,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "io.reactivex.rxjava2:rxjava:2.2.8"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.11"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
     implementation 'org.koin:koin-android:2.0.0-rc-2'
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -52,7 +52,7 @@ dependencies {
 
     kapt "androidx.room:room-compiler:$room_version"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.assertj:assertj-core:3.12.2'
     testImplementation "io.mockk:mockk:1.9.3"
 }
