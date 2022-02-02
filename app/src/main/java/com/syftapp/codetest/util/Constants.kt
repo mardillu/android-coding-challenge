@@ -6,4 +6,4 @@ package com.syftapp.codetest.util
  */
 
 const val NUM_POSTS_TO_DOWNLOAD = 100
-const val DOWNLOAD_PAGE_SIZE = 20
+const val DOWNLOAD_PAGE_SIZE = 30

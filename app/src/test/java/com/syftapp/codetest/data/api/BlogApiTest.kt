@@ -3,6 +3,7 @@ package com.syftapp.codetest.data.api
 import com.syftapp.codetest.data.model.domain.Comment
 import com.syftapp.codetest.data.model.domain.Post
 import com.syftapp.codetest.data.model.domain.User
+import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Single
 import org.assertj.core.api.Assertions.assertThat
@@ -12,9 +13,11 @@ class BlogApiTest {
 
     private val blogService = mockk<BlogService>()
     private val sut = BlogApi(blogService)
+    private val stub = StubBlogService()
 
     @Test
     fun `get users contains correct domain models`() {
+        every { blogService.getUsers() } returns stub.getUsers()
         val apiUser = rxValue(blogService.getUsers()).get(0)
         val users = rxValue(sut.getUsers())
 
@@ -32,6 +35,7 @@ class BlogApiTest {
 
     @Test
     fun `get posts contains correct domain models`() {
+        every { blogService.getPosts() } returns stub.getPosts()
         val apiPost = rxValue(blogService.getPosts()).get(0)
         val posts = rxValue(sut.getPosts())
 
@@ -49,6 +53,7 @@ class BlogApiTest {
 
     @Test
     fun `get comments contains correct domain models`() {
+        every { blogService.getComments() } returns stub.getComments()
         val apiComment = rxValue(blogService.getComments()).get(0)
         val comments = rxValue(sut.getComments())
 
