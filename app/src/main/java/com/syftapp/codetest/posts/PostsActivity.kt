@@ -64,7 +64,7 @@ class PostsActivity : AppCompatActivity(), PostsView, KoinComponent {
         // this is a fairly crude implementation, if it was Flowable, it would
         // be better to use DiffUtil and consider notifyRangeChanged, notifyItemInserted, etc
         // to preserve animations on the RecyclerView
-        adapter = PostsAdapter(posts, presenter)
+        adapter = PostsAdapter(posts, presenter).apply { submitList(posts) }
         listOfPosts.adapter = adapter
         listOfPosts.visibility = View.VISIBLE
     }
