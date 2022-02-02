@@ -27,4 +27,8 @@ Please don't spend more than 3 hours on the test, we understand that your time i
 - Task completion.
 
 If you would like to leave any feedback, please edit the README, and leave your comment below here:
-
+## Comments
+I came across some inline comments in the source code that seem to be action points such as the one in the `showPosts(posts: List<Post>)` in the `PostsActivity` class
+and `render(state: PostDetailScreenState)` in the `PostDetailActivity` class. I wasn't sure if I was supposed to act on those comments since they were not mentioned in the
+task list in this file.
+Anyways, I fixed the one in the `PostsActivity` class
