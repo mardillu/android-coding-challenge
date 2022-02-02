@@ -1,6 +1,8 @@
 package com.syftapp.codetest.posts
 
 import com.syftapp.codetest.data.model.domain.Post
+import com.syftapp.codetest.util.DOWNLOAD_PAGE_SIZE
+import com.syftapp.codetest.util.NUM_POSTS_TO_DOWNLOAD
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -50,7 +52,7 @@ class PostsPresenter(private val getPostsUseCase: GetPostsUseCase) : KoinCompone
      * array and a field that tells us how many post are remaining on the server
      */
     fun loadMorePosts() {
-        val isLastPage = currentPage * 20 >= 100
+        val isLastPage = currentPage * DOWNLOAD_PAGE_SIZE >= NUM_POSTS_TO_DOWNLOAD
         if (isLastPage)
             return
         loadPosts(currentPage++, true)

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.syftapp.codetest.Navigation
 import com.syftapp.codetest.R
 import com.syftapp.codetest.data.model.domain.Post
+import com.syftapp.codetest.util.NUM_POSTS_TO_DOWNLOAD
 import kotlinx.android.synthetic.main.activity_posts.*
 import org.koin.android.ext.android.inject
 import org.koin.core.KoinComponent
@@ -97,7 +98,7 @@ class PostsActivity : AppCompatActivity(), PostsView, KoinComponent {
                     //There are 100 post as per the end point
                     //so we can use the value to know whether or not to load the next page
                     //We assume there can only ever be 100 posts
-                    if (isViewScrolling && totalPosts != 100 && (totalPostsVisible + firstVisiblePost) >= totalPosts) {
+                    if (isViewScrolling && totalPosts != NUM_POSTS_TO_DOWNLOAD && (totalPostsVisible + firstVisiblePost) >= totalPosts) {
                         presenter.loadMorePosts()
                         isViewScrolling = false
                     }

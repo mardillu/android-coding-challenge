@@ -48,6 +48,13 @@ class BlogRepository(
         return postDao.get(postId)
     }
 
+    /**
+     * This function can be enhanced.
+     * It is possible for posts to get modified on the server. When this happens, we should also let
+     * that update reflect on the mobile. This implies that even if skipCache is set to false, we should still
+     * make a request to the server just in case the cache is outdated. So we could hold on to the cache
+     * in the meantime while we also check the server for updates
+     */
     private fun <T> fetchData(
         local: () -> Single<List<T>>,
         remote: () -> Single<List<T>>,
