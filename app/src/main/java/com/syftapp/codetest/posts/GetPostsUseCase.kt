@@ -7,11 +7,11 @@ import org.koin.core.KoinComponent
 
 class GetPostsUseCase(private val repository: BlogRepository) : KoinComponent {
 
-    fun execute(): Single<List<Post>> {
+    fun execute(page: Int = 1, skipCache: Boolean = false): Single<List<Post>> {
         // users must be available for the blog posts
         return repository.getUsers()
             .ignoreElement()
-            .andThen(repository.getPosts())
+            .andThen(repository.getPosts(page, skipCache))
     }
 
 }

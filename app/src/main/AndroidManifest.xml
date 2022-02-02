@@ -14,7 +14,8 @@
         android:name="com.syftapp.codetest.BlogApplication"
         >
 
-        <activity android:name="com.syftapp.codetest.posts.PostsActivity">
+        <activity android:name="com.syftapp.codetest.posts.PostsActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

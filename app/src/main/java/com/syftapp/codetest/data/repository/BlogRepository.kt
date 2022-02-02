@@ -35,11 +35,12 @@ class BlogRepository(
         )
     }
 
-    override fun getPosts(): Single<List<Post>> {
+    override fun getPosts(page: Int, skipCache: Boolean): Single<List<Post>> {
         return fetchData(
             local = { postDao.getAll() },
-            remote = { blogApi.getPosts() },
-            insert = { value -> postDao.insertAll(*value.toTypedArray()) }
+            remote = { blogApi.getPosts(page) },
+            insert = { value -> postDao.insertAll(*value.toTypedArray()) },
+            skipCache = skipCache,
         )
     }
 
@@ -47,22 +48,38 @@ class BlogRepository(
         return postDao.get(postId)
     }
 
+    /**
+     * This function can be enhanced.
+     * It is possible for posts to get modified on the server. When this happens, we should also let
+     * that update reflect on the mobile. This implies that even if skipCache is set to false, we should still
+     * make a request to the server just in case the cache is outdated. So we could hold on to the cache
+     * in the meantime while we also check the server for updates
+     */
     private fun <T> fetchData(
         local: () -> Single<List<T>>,
         remote: () -> Single<List<T>>,
-        insert: (insertValue: List<T>) -> Completable
+        insert: (insertValue: List<T>) -> Completable,
+        skipCache: Boolean = false,
     ): Single<List<T>> {
 
         return local.invoke()
             .flatMap {
-                if (it.isNotEmpty()) {
-                    Single.just(it)
-                } else {
+                if (skipCache){
                     remote.invoke()
                         .map { value ->
                             insert.invoke(value).subscribe();
                             value
                         }
+                } else {
+                    if (it.isNotEmpty()) {
+                        Single.just(it)
+                    } else {
+                        remote.invoke()
+                            .map { value ->
+                                insert.invoke(value).subscribe();
+                                value
+                            }
+                    }
                 }
             }
     }

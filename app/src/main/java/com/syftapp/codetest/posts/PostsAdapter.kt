@@ -3,6 +3,8 @@ package com.syftapp.codetest.posts
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.syftapp.codetest.R
 import com.syftapp.codetest.data.model.domain.Post
@@ -11,7 +13,17 @@ import kotlinx.android.synthetic.main.view_post_list_item.view.*
 class PostsAdapter(
     private val data: List<Post>,
     private val presenter: PostsPresenter
-) : RecyclerView.Adapter<PostViewHolder>() {
+) : ListAdapter<Post, PostViewHolder>(DiffUtilClass()) {
+
+    private class DiffUtilClass : DiffUtil.ItemCallback<Post>() {
+        override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
+            return oldItem == newItem
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

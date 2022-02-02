@@ -23,7 +23,7 @@ class StubBlogService : BlogService {
         ))
     }
 
-    override fun getPosts(): Single<List<Post>> {
+    override fun getPosts(page: Int, limit: Int): Single<List<Post>> {
         return Single.just(listOf(
             Post(1, 1, "title 1", "body 1"),
             Post(1, 2, "title 2", "body 2"),
